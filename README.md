@@ -3,5 +3,5 @@ I used dark-sky's API to get the weather and Mapbox's API to get the latitude & 
 
 ## Screenshots
 ![](Screenshots/Screenshot(1).png)
-![](Screenshots/Screenshot(2).png)
 ![](Screenshots/Screenshot(3).png)
+![](Screenshots/Screenshot(2).png)
