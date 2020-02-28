@@ -28,21 +28,6 @@ app.get('', (req, res) => {
     })
 })
 
-app.get('/about', (req, res) => {
-    res.render('about', {
-        title: 'About Me',
-        name: 'Aditya Pande'
-    })
-})
-
-app.get('/help', (req, res) => {
-    res.render('help', {
-        helpText: 'This is some helpful text.',
-        title: 'Help',
-        name: 'Aditya Pande'
-    })
-})
-
 app.get('/weather', (req, res) => {
     if(!req.query.address){
         return res.send({
@@ -54,36 +39,21 @@ app.get('/weather', (req, res) => {
             return res.send({ error })
         }
         
-        forecast(Latitude, Longitude, (forecaseError, {summary, temperature, precipProbability}) =>{
+        forecast(Latitude, Longitude, (forecaseError, {summary, temperature, precipProbability,icon,temperature_min,temperature_max}) =>{
             if(forecaseError){
                 return res.send({ forecaseError })
             }
             res.send({
                 Location,
-                msg: summary + " It is currently " + temperature + 
-                    " degrees out. There is " + precipProbability + "% chance of rain."
+                summary,
+                icon,
+                temperature_min,
+                temperature_max,
+                temperature,
+                precipProbability
+                
             })
         })
-    })
-})
-
-app.get('/products', (req, res) => {
-    if(!req.query.search){
-        return res.send({
-            error: 'Please Provide Search'
-        })
-    }
-
-    res.send({
-        products: []
-    })
-})
-
-app.get('/help/*', (req, res) => {
-    res.render('404', {
-        title: '404',
-        name: 'Aditya Pande',
-        errorMessage: 'Help article not found.'
     })
 })
 
